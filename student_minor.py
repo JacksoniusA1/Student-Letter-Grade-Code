@@ -64,21 +64,38 @@ elif user_option == "2":
             break
         else:
             print("Error! Incorrect username or password length.\n")
+#- and move on
+#If not valid re prompt user
 print("Ask user for student data")  
 #Create 3 empty lists for student name, scores, letter grades
-print("\Append number of students you have")
-n= number_of_students
-for num in range(n):
-    number_of_students= list_of_numbers 
-    pty_list=[]
-#- and move on
-
-#If not valid re prompt user
-
+student_names_list = []
+student_scores= []
+student_letter_grades= []
 #Ask user how many students to enter data for
-#prompt uer to enter student name and number score
-#store data somewhere
-#convert the number grade score to a letter grade
-
+number_of_students= int(input("Enter the number of students to enter grades for: "))
+for counter in range(number_of_students):
+    
+        
+    #prompt user to enter student name and number score
+    student_names= input("Enter student name: ")
+    student_score= float(input("Enter student score: "))
+    #store data in the lists
+    student_names_list.append(student_names)
+    student_scores.append(student_scores)
+    #convert the number grade score to a letter grade
+    if student_score >=90:
+        student_letter_grades.append("A")
+    elif student_score >=80:
+        student_letter_grades.append("B")
+    elif student_score >=70:
+        student_letter_grades.append("C")
+    elif student_score >=60:
+        student_letter_grades.append("D")
+    else:
+        student_letter_grades.append("F")
 #print student data(name, score, grade)
-#calculate school class average
+for index in range (number_of_students):
+    print(f"{student_names[index]} : {student_scores[index]} : {student_letter_grades [index]}")
+    #calculate school class average
+    #school_class_average = (student_score[index])/number_of_students
+#print(f"school class average: {school_class_average}")
