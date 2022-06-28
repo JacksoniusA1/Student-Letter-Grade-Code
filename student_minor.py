@@ -94,8 +94,16 @@ for counter in range(number_of_students):
     else:
         student_letter_grades.append("F")
 #print student data(name, score, grade)
-for index in range (number_of_students):
+for index in range (len(student_names)):
     print(f"{student_names[index]} : {student_scores[index]} : {student_letter_grades [index]}")
     #calculate school class average
     #school_class_average = (student_score[index])/number_of_students
 #print(f"school class average: {school_class_average}")
+total=0
+#for score in student_scores:
+    #total = score + total
+average= sum(student_scores)/ len(student_scores)
+#for index in range(len(student_scores)):
+  #  total= total + student_scores[index]
+    #average=total/len(student_scores)
+print("your average is:{average}")
