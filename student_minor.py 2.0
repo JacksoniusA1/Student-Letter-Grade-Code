@@ -20,28 +20,42 @@ def get_user_option():
             print("Yay! Good input")
             break
     return user_option
-def main():
-    print_main_menu()
+
+def login_user(u_name, u_pass):
+    user_file = open("users.txt", "r")
+    user_found= False
+    for line in user_file:
+        credentials = line.split(", ")
+        if u_name == credentials[0] and u_pass == credentials[1].rstrip():
+            user_found = True
+            break
+    return user_found
+
+def create_user(u_name, u_pass):
+    pass
+def validate_username_or_password(user_credentials, min_length, max_length):
+    if user_credentials>= min_length and user_credentials<= max_length:
+        return True
+    else:
+        print("Error! Incorrect username or password lengthh.\n")
+        return False
+    def main():
+     print_main_menu()
   #prompt and get user option
-  user_option = get_user_option()
+    user_option = get_user_option()
     if user_option == "1": 
         while True:
             #if the user chose 1, ask for user name and password
             user_name= input("please enter your user name: ")
             user_pass= input("please enter your password: ")
+            user_logged_in=login_user(user_name,user_pass)
             # -check username and password combination in the users.txt file
             #open the users files
-            user_file = open("users.txt", "r")
-            user_found= False
-            for line in user_file:
-                credentials = line.split(", ")
-                if user_name == credentials[0] and user_pass == credentials[1].rstrip():
-                    user_found = True
-                    break
+         
 
-            if user_found:
-                    print(f"User {user_name} successfully logged in!")
-                    break
+            if user_logged_in:
+                print(f"User {user_name} successfully logged in!")
+                break
             else:
                 print(f"{user_name} not found! \n")
             #read the lines from the file
@@ -115,5 +129,3 @@ def main():
     #  total= total + student_scores[index]
         #average=total/len(student_scores)
     print(f"your average is:{average}")
-
-main()
