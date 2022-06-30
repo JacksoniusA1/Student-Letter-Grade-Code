@@ -45,20 +45,61 @@ def login_user(u_name, u_pass):
                     print(f"User {user_name} not found!\n")
     
     
-    return user_found
+    return
 
-def create_user(u_name, u_pass):
-    pass
+def create_user():
+    while True:
+        user_name = get_valid_username_or_password("Please enter your user name (4 - 12 characters): ",4 ,12)
+        user_pass = get_valid_username_or_password("Please enter your password: (6 - 16) characters: ", 6, 16)
+  
+#write user name and password to file
+        try:
+            user_file = open("users.txt", "a")
+            user_file.write(f"{user_name}, {user_pass}\n")
+                    
+        except:
+            print("Error creating user.\n")
+            continue
+        else:
+            print(f"User: {user_name} created")
+        finally:
+            user_file.close()
+            break
+    return
 
-def validate_username_or_password(user_credential, min_length, max_length):
-    if (user_credential >= min_length and user_credential <= max_length):
-        return True
-    else:
-        print("ERROR: Incorrect username or password length.\n")
-        return False
+def get_valid_username_or_password(prompt, min_length, max_length):
+    while True:
+        user_input=input(prompt)
+        input_length=len(user_input)
 
+        if (input_length >= min_length and input_length <= max_length):
+            break
+        
+        else:
+            print("ERROR: input length invalid.\n")
+    return user_input
 
-def main():
+def get_integer_input(prompt):
+    while True:
+        try:
+            user_input= int(input{prompt})
+        except:
+            print("ERROR. input must be a number\n")
+            else:
+                break
+
+def get_letter_grade(score):
+    if score>=90:
+        return "A"
+    elif score>=80
+        return "B"
+    elif score>= 70:
+        return "C"
+    elif score>= 60:
+        return "D"
+    else
+    return "F"      
+      main():
     print_main_menu()
     #prompt and get the option the user selected
     user_option = get_user_option()
@@ -67,38 +108,21 @@ def main():
     
             #If user chose 1, ask for user name and password and
         login_user()
-
            
     #If user chose 2, ask for user name and password and
     elif user_option == "2":
-        while True:
-            #If user chose 2, ask for user name and password and
-            user_name = input("Please enter your user name (4 - 12 characters): ")
-            user_pass = input("Please enter your password: (6 - 16) characters: ")
-
-            #get username and password length
-            user_name_length = len(user_name)
-            password_length = len(user_pass)
-            
-            # - validate username and password length. If valid, write to users.txt file
-            # 4 <= user_mame_length >= 12
-            if (user_name_length >= 4 and user_name_length <= 12) and (password_length >= 6 and password_length <= 16):
-                #write user and pass to the file
-                user_file = open("users.txt", "a")
-                user_file.write(f"{user_name}, {user_pass}\n")
-                user_file.close()
-                break
-            else:
-                print("ERROR: Incorrect username or password length.\n")
-
+       create_user()
     print("Ask user for student data")
     #Create 3 empty list for student name, scores, letter grades
+    number_of_students
     student_names = []
     student_scores = []
     student_letter_grades = []
 
     #Ask user how many students to enter data for
     number_of_students = int(input("Enter number of students to enter grades for: "))
+def load_students_scores_and_grades(number_of_students):
+    student_names, score_list, letter_grades= [], [], []
 
     for counter in range(number_of_students):
         #prompt user to enter student name and number score
@@ -107,7 +131,10 @@ def main():
         
         #store data in the lists
         student_names.append(student_name)
-        student_scores.append(student_score)
+        score_list.append(score)
+        letter_grades.append(get_letter_grades{student_scores})
+    return student_names, score_list, letter_grades
+
         
         #convert the current number score to a letter grade and store in the letter grade list
         #use and If...elif...else statement
